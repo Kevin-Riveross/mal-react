@@ -1,0 +1,56 @@
+<header class="header">
+    <div class="flex">
+        <div class="logo">
+            <a href="/"><img src="/img/logo/logo-beerbar.png" alt="logo"></a>
+        </div> 
+        <form action="/busqueda" method="get">
+        <div class="buscar">
+            <input type="text" name="search" id="search" placeholder="Birras, comida y más..." required>
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-magnifying-glass icon"></i>
+            </button>
+        </div>
+        </form>
+        
+        <div class="icons">
+            <button class="carrito">
+                <% if (locals.userLogin) { %>
+                <a href="/products/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                <% } else { %>
+                <a href="/users/login"><i class="fa-solid fa-cart-shopping"></i></a> 
+                <% } %>
+            </button>
+            <button class="burger" id="menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/products">Productos</a></li>
+            <li><a href="#">Empresa</a></li>
+            <li><a href="#">Ayuda</a></li>
+            <% if (locals.userLogin && locals.userLogin.rol == 2) { %>
+            <li><a href="/admin/list">Admin</a></li>
+            <% } %>
+        </ul>
+        <ul class="user">
+            
+            <% if (locals.userLogin) { %>
+            <li><a href="/users/profile">Bienvenido <%= locals.userLogin.nombre %></a></li>
+            <% } else { %>
+            <li><a href="/users/login">Login</a></li>
+            <li><a href="/users/register">Registro</a></li>
+            <% } %>
+            
+        </ul>
+
+        
+        <!-- <div class="t-f">
+            <button><i class="fa-brands fa-twitter"></i></button>
+            <button><i class="fa-brands fa-facebook-f"></i></button>
+        </div> -->
+    </nav>
+
+</header>

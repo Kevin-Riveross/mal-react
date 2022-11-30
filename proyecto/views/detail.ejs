@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Iconos -->
+    <script src="https://kit.fontawesome.com/e41faadd8e.js" crossorigin="anonymous"></script>
+    <!--  Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <script src="/js/menu.js"></script>
+    <title>Detalle</title>
+</head>
+<body class="detail">
+    <%- include('./partials/header') %>
+    <main>
+        <h1>Detalle del Producto</h1>
+        <section>
+             <article>
+                <img src="/img/productos/<%= products.imagenes[0].name %>" alt="imagen del producto">
+                <div class="contenedor">
+                    <h3> <%= products.nombre %></h3>
+                    <p><%= products.detalle %></p>
+
+                    <h4>Precio:</h4>
+                    <% if (products.descuento > 0) { %>
+                    <p class="old">$<%= products.precio %> </p>
+                    <p class="precio">$<%= products.precio - (products.precio * products.descuento / 100) %><small class="descuento"><%= products.descuento %>%</small>
+                    <p>
+                    <% }else { %>
+                    <p class="precio">$<%= products.precio %> </p>
+                    <% } %>
+                    <div class="cantidad">
+                        <button class="button" id="decrease">-</button>
+                        <input type="number" id="count" value="1" placeholder="0">
+                        <button class="button button2" id="increase">+</button>
+                        <input type="number" id="stock" value="<%= products.stock %>">
+                    </div>
+                    <button>añadir al carrito</button>
+                </div>
+            </article>
+        </section>
+        <button><a href="/products">SEGUIR COMPRANDO</a></button>
+        <section class="suggestion">
+            <div><h3>ACOMPAÑAR CON:</h3></div>
+            <% randon.forEach(element => { %>
+                <a href="/products/detail/<%= element.id %>">
+                  <article>
+                    <div><img src="/img/productos/<%= element.imagenes[0].name %>" alt="pansito"></div>
+                    <h4><%= element.nombre %> </h4>
+                  </article>  
+                </a>
+            <% }) %>
+            <div>
+                <button><a href="">ver mas</a></button>
+            </div>
+        </section>
+<!-- banner -->
+        <div class="ban">
+            <img src="/img/productos/banner.jpg" alt="banner">
+        </div>
+    </main>
+
+    <%- include('./partials/footer') %>
+    <script src="/js/increase.js"></script>
+</body>
+</html>

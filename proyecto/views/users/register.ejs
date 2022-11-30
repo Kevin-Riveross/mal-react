@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/b19d58878c.js" crossorigin="anonymous"></script>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="register">
+    <header>
+        <div class="logo"><a href="/"><img src="../img/logo/logo-beerbar.png" alt="logo"></a></div>
+
+        <!-- <nav>
+             <ul>
+                <li><a href="/login">Login</a></li>
+            </ul>    
+            <ul>
+                <li><a href="/products/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><i class="fa-solid fa-bars"></i></li>
+            </ul>   
+        </nav> -->
+    </header>
+    <main>
+        <h1>Sign-up</h1>
+        <form action="/users/register" method="post" enctype="multipart/form-data">
+            <div class="container">
+                
+                <label for="name">Nombre</label>
+                <input type="text" name="name" id="name" placeholder="Ingresar nombre" value="<%= locals.old && old.name ? old.name : null%>">
+                
+                    <small id="nombreError"><%= locals.errors && errors.name ? errors.name.msg : null %></small>
+                
+            </div>
+            <div class="container">
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" id="apellido" placeholder="Ingresar su apellido" value="<%= locals.old && old.apellido ? old.apellido : null%>">
+                
+                    <small id="apellidoError"><%= locals.errors && errors.apellido ? errors.apellido.msg : null %></small>
+                
+            </div>
+            
+                <div class="container">
+                    <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" placeholder="Ingresar e-mail" value="<%= locals.old && old.email ? old.email : null%>">
+                
+                    <small id="emailError"><%= locals.errors && errors.email ? errors.email.msg : null %></small>
+                
+                </div>
+                
+                <div class="container">
+                <label for="pass">Contraseña</label>
+                <input type="password" name="pass" id="pass" placeholder="Ingresar Contraseña" >
+                
+                    <small id="passError"><%= locals.errors && errors.pass ? errors.pass.msg : null %></small>
+                
+            </div>
+            <div class="container">
+                <input type="password" name="pass2" id="pass2" placeholder="Repetir Contraseña" >
+                
+                    <small id="pass2Error"><%= locals.errors && errors.pass2 ? errors.pass2.msg : null %></small>
+                
+            </div>
+            <div class="container">
+                <label for="contact">Nro de Contacto <p>("No es obligatorio")</p></label>
+                <input type="number" name="contacto" id="contacto" placeholder="Ingresar Nro">
+                
+                    <small id="contactoError"><%= locals.errors && errors.contacto ? errors.contacto.msg : null %></small>
+                
+            </div>
+            <h2 class="bottom">Genero</h2>
+            <div class="bottom">
+                <input type="radio" class="genero" name="genero" id="F" value="F" <%= locals.old && old.genero==='F' ? "checked" : null%> >
+                <label for="F">Femenino</label>
+                
+                <input type="radio" class="genero" name="genero" id="M" value="M" <%= locals.old && old.genero==='M' ? "checked" : null%>>
+                <label for="M">Masculino</label>
+                
+                <input type="radio" class="genero" name="genero" id="SN" value="SN" <%= locals.old && old.genero==='SN' ? "checked" : null%> >
+                <label for="SN">Prefiero no decirlo</label> 
+                <br>
+                
+                    <small id="generoError"><%= locals.errors && errors.genero ? errors.genero.msg : null %></small>
+                
+            </div>
+            <div class="container-img">
+                <label for="ima">Subi tu imagen aqui</label>
+                <input type="file" name="image" id="image">
+                
+                    <small id="imgError"><%= locals.errors && errors.image ? errors.image.msg : null %></small>
+                
+            </div>
+
+            <div class="bottom">
+                <div>
+                    <input type="checkbox" name="terminos" id="terminos">
+                    <label for="terminos">Acepto los terminos y condiciones</label>
+                </div>
+                
+                    <small id="terminosError"><%= locals.errors && errors.terminos ? errors.terminos.msg : null %></small>
+                
+            </div>
+
+            <div class="registrarse">
+                <button type="submit" id="btn_submit"><i class="fa-solid fa-user"></i> sign-up</button>
+            </div>
+            <div class="G">
+                <h4>Registrarse con:</h4>
+                <button type="submit"><i class="fa-brands fa-google"></i></button>
+            </div>
+        </form>
+    </main>
+    <script src="/js/validacionUsuarios.js"></script>
+</body>
+</html>

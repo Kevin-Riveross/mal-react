@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Iconos -->
+    <script src="https://kit.fontawesome.com/e41faadd8e.js" crossorigin="anonymous"></script>
+    <!--  Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>Editar perfil</title>
+</head>
+<body class="edituser">
+    <%- include('../partials/header') %>
+    <main>
+        <form action="/users/editarUser/<%= locals.userLogin.id %>?_method=PUT" method="post" enctype="multipart/form-data"> 
+            
+          <section class="section">
+
+            <article class="datosAEditar">
+
+              <div class="img">
+                <label> foto de perfil</label>
+                <img class="avatar" src="../img/usuarios/<%= locals.userLogin.image === usuario.imagenesAvatar[0].name ? usuario.imagenesAvatar[0].name : null %>" alt="">
+                <input type="file" name="image" id="file" accept="/image" value="<%= locals.old && old.image ? old.name: locals.userLogin.image %>" >
+              </div>
+
+              <div>
+                <label for="name">Editar nombre</label>
+                <input type="text" name="name" id="name" value="<%=locals.old && old.name ? old.name : locals.userLogin.nombre %>">
+              </div>
+
+              <div>
+                <label for="apellido">Editar apellido</label> 
+                <input type="text" name="apellido" id="apellido" value="<%=locals.old && old.apellido ? old.apellido : locals.userLogin.apellido %>">
+              </div>
+         <!-- recordatorio para crear validacion -->
+              <div>     
+                <label for="genero">Editar Genero</label>
+                <!-- <input type="genero" id="genero" name="genero" value="<%= locals.userLogin.genero%> "> -->
+              <section class="genre">
+                <article>
+                  <input type="radio" name="genero" id="F" value="F" <%= locals.old && old.genero==='F' ? "checked" : null%> >
+                  <label for="F">Femenino</label>
+                </article>
+                <article>
+                  <input type="radio" name="genero" id="M" value="M" <%= locals.old && old.genero==='M' ? "checked" : null%>>
+                  <label for="M">Masculino</label>
+                </article>
+                <article>
+                  <input type="radio" name="genero" id="SN" value="SN" <%= locals.old && old.genero==='SN' ? "checked" : null%> >
+                  <label for="SN">Otro</label>
+                </article>
+              </section>
+              </div>
+
+            </article>
+      
+              <div>
+                <button class="actualizar" type="submit">Actualizar datos</button>
+              </div>
+          </section>
+      </form>
+    </main>
+    
+    <%- include('../partials/footer') %>
+    
+</body>
+ </html>
